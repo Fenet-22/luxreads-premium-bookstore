@@ -1,0 +1,541 @@
+/* Import Google Fonts if used */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap'); /* For modal */
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: url('../images/background.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Smooth scrolling for potential anchor links */
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 999; /* Ensure header stays on top */
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #ffd700;
+    letter-spacing: 2px;
+    margin: 0; /* Remove default margin */
+}
+
+nav a {
+    color: #fff;
+    margin: 0 1.5rem; /* Adjusted margin */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.15rem; /* Slightly adjusted font size */
+    position: relative; /* For underline effect */
+}
+
+nav a:hover {
+    color: #ffd700;
+    transition: 0.3s ease-in-out; /* Added ease-in-out */
+}
+
+/* Hover underline effect */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #ffd700;
+    transition: width 0.3s ease-in-out;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+.hero {
+    background: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px); /* Added a subtle blur to the hero section */
+}
+
+.hero h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.9); /* Stronger text shadow */
+    margin-bottom: 1rem;
+    animation: bounce 1.5s infinite;
+}
+
+.hero p {
+    font-size: 1.5rem; /* Slightly larger paragraph */
+    max-width: 800px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.search-bar {
+    margin-top: 3rem;
+    position: relative;
+    width: 60%; /* Increased width */
+    max-width: 700px; /* Max width for larger screens */
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 1.2rem 2.5rem; /* Increased padding */
+    border-radius: 35px; /* More rounded */
+    border: 3px solid #ffd700; /* Thicker, prominent border */
+    font-size: 1.3rem; /* Larger font */
+    background: rgba(0, 0, 0, 0.6); /* Slightly more transparent */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Glowing effect */
+    transition: all 0.3s ease;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #ffc107;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+}
+
+
+.genre-list {
+    margin-top: 2.5rem; /* Adjusted margin */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem; /* Increased gap */
+}
+
+.genre-list .genre {
+    background: rgba(50, 50, 50, 0.7); /* Slightly more transparent */
+    padding: 0.8rem 1.8rem; /* Increased padding */
+    border-radius: 30px; /* More rounded */
+    font-size: 1.1rem; /* Slightly larger font */
+    color: #fff;
+    border: 2px solid #ffd700; /* Thicker border */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Text shadow */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Subtle shadow */
+}
+
+.genre-list .genre:hover {
+    background: #ffd700;
+    color: #3e2723;
+    transform: translateY(-5px) scale(1.05); /* Lift and grow effect */
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+/* --- CRITICAL CHANGES FOR BOOK SECTION TO PREVENT STRETCHING --- */
+.book-section {
+    display: grid;
+    /* This defines fixed width columns and allows auto-placement */
+    /* Adjust '320px' to your desired fixed card width. */
+    /* 'minmax(280px, 320px)' is a good fallback for responsiveness. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+    gap: 2.5rem;
+    padding: 3.5rem; /* Padding around the entire grid */
+
+    /* Center the entire grid within its parent (body) */
+    max-width: 1400px; /* Max width for the entire grid */
+    margin: 0 auto; /* Centers the grid horizontally */
+
+    /* Align items within their grid cells, ensuring centering if they don't fill the cell */
+    justify-content: center; /* Centers grid tracks if they don't fill the row */
+    align-items: start; /* Aligns items to the start of their cell vertically */
+}
+
+
+.book-card {
+    background: rgba(50, 50, 50, 0.3); /* **Glassy Base**: More transparent background */
+    backdrop-filter: blur(10px) saturate(180%); /* **Glassy Effect**: Blur and saturate content behind */
+    -webkit-backdrop-filter: blur(10px) saturate(180%); /* For Safari compatibility */
+    border-radius: 20px; /* More rounded corners */
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), /* Stronger, more elegant shadow */
+                0 0 0 1px rgba(255, 215, 0, 0.2); /* Thin golden border for highlight */
+    transition: all 0.4s ease;
+    position: relative;
+    height: auto; /* Allow height to adjust */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid rgba(255, 215, 0, 0.3); /* Subtle border matching gold */
+
+    /* Crucial: Ensure the card's width is controlled by its grid cell */
+    width: 100%; /* Make card take up 100% of its grid cell's width */
+    /* Remove any specific max-width on the card itself, as grid-template-columns handles it now. */
+    /* Add margin auto to center the card within its individual grid cell if it's smaller */
+    margin: 0 auto;
+}
+
+.book-card:hover {
+    transform: translateY(-10px) scale(1.03); /* More pronounced lift and grow */
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.6), /* Even stronger shadow on hover */
+                0 0 0 2px #ffd700; /* Prominent golden border on hover */
+}
+
+.book-card img {
+    width: 100%;
+    height: 320px; /* Slightly taller image */
+    object-fit: cover;
+    border-bottom: 3px solid #ffd700; /* Thicker golden border */
+    display: block;
+    filter: brightness(0.95); /* Slightly dim image to integrate with glassy effect */
+    transition: filter 0.3s ease;
+}
+
+.book-card:hover img {
+    filter: brightness(1.05); /* Brighten image on hover */
+}
+
+.book-card .details {
+    padding: 2rem; /* More padding */
+    background: rgba(0, 0, 0, 0.4); /* **Glassy Details Background**: More transparent */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #f8f8f8; /* Slightly lighter text for contrast */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Add text shadow for readability */
+}
+
+.book-card .details h3 {
+    font-size: 1.8rem; /* Larger title */
+    color: #ffe066; /* Brighter gold for titles */
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9); /* Stronger shadow for titles */
+}
+
+.book-card .details p {
+    font-size: 1.05rem; /* Slightly larger description text */
+    color: #e0e0e0; /* Lighter grey for description */
+    margin-bottom: 1.8rem; /* More space below description */
+    line-height: 1.6;
+    max-height: 5.2em; /* Adjusted height for 3 lines */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+}
+
+.book-card .details button,
+.book-card .details a {
+    background: #ffd700; /* Your primary gold color */
+    color: #3e2723;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: auto;
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+}
+
+.book-card .details button:hover,
+.book-card .details a:hover {
+    background: #ffc107;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.6);
+}
+
+/* No Books Message */
+.no-books-message {
+    grid-column: 1 / -1; /* Span across all columns */
+    text-align: center;
+    color: #fff;
+    font-size: 1.8em;
+    padding: 80px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    margin: 50px auto;
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+footer {
+    background: rgba(50, 50, 50, 0.9);
+    text-align: center;
+    padding: 2.5rem;
+    color: #d7ccc8;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.6);
+    font-size: 1.1rem;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* --- Modal Styles --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.modal-content {
+    background: rgba(47, 42, 40, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 45px 35px;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    border: 3px solid #bfa98f;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.modal-content h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #d4c2a7;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.modal-content p {
+    font-size: 1.2em;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.modal-btn {
+    display: inline-block;
+    margin: 10px 15px;
+    padding: 14px 35px;
+    background: #bfa98f;
+    color: #2f2a28;
+    font-weight: bold;
+    border-radius: 35px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(191, 169, 143, 0.4);
+    font-size: 1.15em;
+}
+
+.modal-btn:hover {
+    background: #a58e6f;
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(191, 169, 143, 0.6);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: #f4f4f4;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.close-btn:hover {
+    color: #bfa98f;
+    transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-80px) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+    .hero p {
+        font-size: 1.3rem;
+    }
+    .search-bar {
+        width: 70%;
+    }
+    .book-section {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 300px)); /* Adjusted max size */
+        gap: 1.8rem;
+        padding: 3rem; /* Adjusted padding */
+    }
+    .book-card img {
+        height: 280px;
+    }
+    .book-card .details h3 {
+        font-size: 1.6rem;
+    }
+    .book-card .details p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    header nav {
+        margin-top: 15px;
+    }
+    header nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+    }
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .search-bar {
+        width: 85%;
+    }
+    .search-bar input {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    .genre-list {
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+    }
+    .genre-list .genre {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    .book-section {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); /* Adjusted max size */
+        gap: 1.5rem;
+        padding: 2rem; /* Adjusted padding */
+    }
+    .book-card img {
+        height: 250px;
+    }
+    .book-card .details {
+        padding: 1.2rem;
+    }
+    .book-card .details h3 {
+        font-size: 1.4rem;
+    }
+    .book-card .details p {
+        font-size: 0.9rem;
+    }
+    .book-card .details button,
+    .book-card .details a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    .modal-content {
+        padding: 30px 20px;
+    }
+    .modal-content h2 {
+        font-size: 22px;
+    }
+    .modal-content p {
+        font-size: 1em;
+    }
+    .modal-btn {
+        padding: 10px 25px;
+        font-size: 1em;
+    }
+    .close-btn {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    header nav a {
+        margin: 0 8px;
+        font-size: 0.9rem;
+    }
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+    .search-bar {
+        width: 95%;
+    }
+    .search-bar input {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+    .book-section {
+        /* On very small screens, force single column with specific max width */
+        grid-template-columns: minmax(280px, 320px); /* One column, specific range */
+        gap: 1rem;
+        padding: 1rem; /* Minimum padding */
+    }
+    .book-card img {
+        height: 280px;
+    }
+    .book-card .details {
+        padding: 1rem;
+    }
+    .book-card .details h3 {
+        font-size: 1.2rem;
+    }
+    .book-card .details p {
+        font-size: 0.85rem;
+    }
+}
